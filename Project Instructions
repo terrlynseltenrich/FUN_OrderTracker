@@ -1,0 +1,50 @@
+Instructions
+Group Assignment — MVC + EF Core (SQL Server): Order Manager
+
+Published: September 28, 2025
+
+Project Overview
+  Build a multi-entity CRUD web app in ASP.NET Core MVC backed by SQL Server using EF Core. The domain is a simple Order Management system.
+
+Entities (4)
+  1) Customer  2) Product  3) Order  4) OrderItem (Order ↔ Product join with quantity & unit price snapshot).
+
+Team Roles
+  - DB Lead: schema, migrations, seed.
+
+  - Backend Lead: business rules & controllers.
+
+  - UI Lead: views, list filters, styling.
+
+  - QA Lead: test plan, manual tests, optional unit tests.
+
+Core Requirements
+  - SQL Server / LocalDB connection via `appsettings.json`.
+
+  - EF Core migrations and seeding.
+
+  - CRUD for all 4 entities.
+
+  - Order details show items and computed total.
+
+  -  `OrderItem.UnitPrice` defaults to `Product.UnitPrice` on create.
+
+  - Validations & two-decimal currency formatting.
+
+Extra Credit (optional)
+  - Search/filter on list pages; pagination.
+
+  - Concurrency token for Product price.
+  
+  - Report page: Top customers / products.
+  
+  - Soft delete for Products (IsActive).
+
+Deliverables
+  Zip of the solution, README with setup steps, screenshots or tests demonstrating core flows.
+
+Rubric (100)
+  Models & relationships (20), Migrations & seeding (15), CRUD & validation (30), Order totals logic (15), UI polish (10), Team practices & README (10).
+
+How to Start
+  Open README.md in the starter; run EF migrations, scaffold controllers and views for each entity; implement TODOs; seed DB; verify flows.
