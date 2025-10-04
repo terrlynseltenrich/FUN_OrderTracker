@@ -1,8 +1,14 @@
 {
   "ExpandedNodes": [
     "",
-    "\\OrderManagerMvc"
+    "\\OrderManagerMvc",
+    "\\OrderManagerMvc\\Controllers",
+    "\\OrderManagerMvc\\Data",
+    "\\OrderManagerMvc\\Models",
+    "\\OrderManagerMvc\\Views",
+    "\\OrderManagerMvc\\Views\\Home",
+    "\\OrderManagerMvc\\Views\\Shared"
   ],
-  "SelectedNode": "\\OrderManagerMvc\\OrderManagerMvc.csproj",
+  "SelectedNode": "\\OrderManagerMvc\\Controllers\\HomeController.cs",
   "PreviewInSolutionExplorer": false
 }
