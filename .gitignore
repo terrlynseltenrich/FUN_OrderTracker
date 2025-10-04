@@ -1,0 +1,15 @@
+
+# Build results
+bin/
+obj/
+*.user
+*.suo
+*.userprefs
+.vs/
+# Logs
+*.log
+# Secrets
+appsettings.*.json
+# OS
+.DS_Store
+Thumbs.db
