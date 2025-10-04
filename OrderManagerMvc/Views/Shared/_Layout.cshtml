@@ -1,0 +1,26 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Order Manager MVC</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
+</head>
+<body class="container py-4">
+    <header class="mb-4">
+        <h2>Order Manager MVC</h2>
+        <nav class="mb-3">
+            <a class="me-3" href="~/">Home</a>
+            <a class="me-3" href="~/Customers">Customers</a>
+            <a class="me-3" href="~/Products">Products</a>
+            <a class="me-3" href="~/Orders">Orders</a>
+            <a class="me-3" href="~/OrderItems">Order Items</a>
+        </nav>
+        <hr/>
+    </header>
+    <main role="main">
+        @RenderBody()
+    </main>
+</body>
+</html>

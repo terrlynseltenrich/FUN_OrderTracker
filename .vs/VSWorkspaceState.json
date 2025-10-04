@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\FUN_OrderTracker"
+    "\\OrderManagerMvc"
   ],
+  "SelectedNode": "\\OrderManagerMvc\\OrderManagerMvc.csproj",
   "PreviewInSolutionExplorer": false
 }
