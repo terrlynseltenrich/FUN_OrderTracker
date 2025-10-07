@@ -5,75 +5,74 @@ using OrderManagerMvc.Models;
 using System.Threading.Tasks;
 
 namespace OrderManagerMvc.Controllers
-{
-    public class CustomerController : Controller
+
     {
+    public class ProductController : Controller
+        {
         private readonly AppDbContext _context;
-        public CustomerController(AppDbContext context)
+        public ProductController(AppDbContext context)
         {
             _context = context;
         }
-        // GET: Customer
+        // GET: Product
         public async Task<IActionResult> Index()
         {
-            var customers = await _context.Customers.ToListAsync();
-            return View(customers);
+            var products = await _context.Products.ToListAsync();
+            return View(products);
         }
-        // GET: Customer/Details/5
+        // GET: Product/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Customers == null)
+            if (id == null || _context.Products == null)
             {
                 return NotFound();
             }
-            var customer = await _context.Customers 
+            var product = await _context.Products 
                 .FirstOrDefaultAsync(m => m.Id == id); // Changed from FindAsync to FirstOrDefaultAsync for better null handling
-            if (customer == null)
+            if (product == null)
             {
                 return NotFound();
             }
-            return View(customer);
+            return View(product);
         }
-        // GET: Customer/Create
+        // GET: Product/Create
         public IActionResult Create()
         {
             return View();
         }
-        // POST: Customer/Create
+        // POST: Product/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Email,Phone")] Customer customer)
+        public async Task<IActionResult> Create([Bind("Id,Name,Description,Price,Stock")] Product product)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(customer);
+                _context.Add(product);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(customer);
+            return View(product);
         }
-
-        // GET: Customer/Edit/5
+        // GET: Product/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Customers == null)
+            if (id == null || _context.Products == null)
             {
                 return NotFound();
             }
-            var customer = await _context.Customers.FindAsync(id);
-            if (customer == null)
+            var product = await _context.Products.FindAsync(id);
+            if (product == null)
             {
                 return NotFound();
             }
-            return View(customer);
+            return View(product);
         }
-
-        // POST: Customer/Edit/5
+        // POST: Product/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Email,Phone")] Customer customer)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Price,Stock")] Product product)
         {
-            if (id != customer.Id)
+            if (id != product.Id)
             {
                 return NotFound();
             }
@@ -81,12 +80,12 @@ namespace OrderManagerMvc.Controllers
             {
                 try
                 {
-                    _context.Update(customer);
+                    _context.Update(product);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CustomerExists(customer.Id))
+                    if (!ProductExists(product.Id))
                     {
                         return NotFound();
                     }
@@ -95,47 +94,45 @@ namespace OrderManagerMvc.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Index));                                      
+                }                   
+            return View(product);
             }
-            return View(customer);
-        }
-
-        // GET: Customer/Delete/5
+        // GET: Product/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Customers == null)
+            if (id == null || _context.Products == null)
             {
                 return NotFound();
             }
-            var customer = await _context.Customers
+            var product = await _context.Products
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (customer == null)
+            if (product == null)
             {
                 return NotFound();
             }
-            return View(customer);
+            return View(product);
         }
-
-        // POST: Customer/Delete/5
+        // POST: Product/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id) // Renamed to DeleteConfirmed to avoid ambiguity
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Customers == null)
+            if (_context.Products == null)
             {
-                return Problem("Entity set 'ApplicationDbContext.Customers'  is null."); // Handle null context scenario
+                return Problem("Entity set 'ApplicationDbContext.Products'  is null.");
             }
-            var customer = await _context.Customers.FindAsync(id);
-            if (customer != null)
+            var product = await _context.Products.FindAsync(id);
+            if (product != null)
             {
-                _context.Customers.Remove(customer); // Safely remove customer if found
+                _context.Products.Remove(product);
             }
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-        private bool CustomerExists(int id) // Check if a customer exists by ID in the database
+        private bool ProductExists(int id)
         {
-            return (_context.Customers?.Any(e => e.Id == id)).GetValueOrDefault(); // Safely handle null context
+            return (_context.Products?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }
